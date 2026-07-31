@@ -340,7 +340,18 @@
 <script>
     let toastTimer = null;
 
+    // دالة النسخ المعدلة لإرسال تقرير الإحالة الناجحة أوتوماتيكياً لجوجل إعلانات عند النقرة
     function copyAndRedirect(code, targetUrl, btnEl){
+        
+        // إرسال كود التحويل لجوجل إعلانات فور الضغط
+        if (typeof gtag === 'function') {
+            gtag('event', 'conversion', {
+                'send_to': 'AW-18323731587/f-neCJrUsdACEIPpt6FE',
+                'value': 1.0,
+                'currency': 'EGP'
+            });
+        }
+
         const showToastAndGo = (success) => {
             const toast = document.getElementById('toast');
             const toastText = document.getElementById('toast-text');
@@ -371,5 +382,4 @@
     }
 </script>
 </body>
-</html>
 </html>
