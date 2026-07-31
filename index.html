@@ -340,7 +340,7 @@
 <script>
     let toastTimer = null;
 
-    // دالة النسخ المعدلة لإرسال تقرير الإحالة الناجحة أوتوماتيكياً لجوجل إعلانات عند النقرة
+    // دالة النسخ المحدثة لحل مشكلة الحظر المنبثق وإرسال الإشارات لجوجل إعلانات
     function copyAndRedirect(code, targetUrl, btnEl){
         
         // إرسال كود التحويل لجوجل إعلانات فور الضغط
@@ -368,16 +368,30 @@
             }
 
             if (toastTimer) clearTimeout(toastTimer);
+            
+            // تغيير التوجيه ليتم في نفس الصفحة بدلاً من فتح نافذة جديدة (لتفادي الحظر)
             toastTimer = setTimeout(() => {
                 toast.classList.add('hidden');
-                window.open(targetUrl, '_blank', 'noopener');
-            }, 1200);
+                window.location.href = targetUrl; 
+            }, 1000);
         };
 
         if (navigator.clipboard && navigator.clipboard.writeText){
             navigator.clipboard.writeText(code).then(() => showToastAndGo(true)).catch(() => showToastAndGo(false));
         } else {
-            showToastAndGo(false);
+            // حل احتياطي للمتصفحات القديمة داخل التطبيقات
+            const textarea = document.createElement('textarea');
+            textarea.value = code;
+            textarea.style.position = 'fixed';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToastAndGo(true);
+            } catch (err) {
+                showToastAndGo(false);
+            }
+            document.body.removeChild(textarea);
         }
     }
 </script>
