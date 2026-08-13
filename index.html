@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="احصل على أقوى كود خصم نون ZWR لتوفير إضافي يصل إلى 80% على كافة المستلزمات.">
     
-    <!-- سياسة أمان المحتوى (CSP) لحماية الصفحة -->
+    <!-- سياسة أمان المحتوى (CSP) -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc data:;">
 
     <title>أكبر عروض العام من نون | كود خصم ZWR</title>
     
-    <!-- Preconnect للخطوط لتحسين السرعة -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* Reset وتعريف الألوان الأساسية */
         :root {
             --noon-yellow: #feee00;
             --noon-yellow-hover: #e5d600;
@@ -44,7 +42,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* حاوية الكارت المربع */
         .card {
             background-color: var(--card-bg);
             width: 100%;
@@ -55,7 +52,6 @@
             text-align: center;
         }
 
-        /* إطار الصورة لمنع الـ CLS */
         .banner-wrapper {
             width: 100%;
             aspect-ratio: 1200 / 300;
@@ -72,7 +68,6 @@
             display: block;
         }
 
-        /* العناوين */
         .title {
             font-size: 28px;
             font-weight: 900;
@@ -88,7 +83,6 @@
             margin-bottom: 24px;
         }
 
-        /* مربع الكود المنقط */
         .coupon-box {
             border: 2px dashed var(--text-color);
             border-radius: 6px;
@@ -103,7 +97,6 @@
             direction: ltr;
         }
 
-        /* زر النسخ */
         .copy-btn {
             background-color: var(--noon-yellow);
             color: var(--text-color);
@@ -119,13 +112,8 @@
             outline: none;
         }
 
-        .copy-btn:hover {
-            background-color: var(--noon-yellow-hover);
-        }
-
-        .copy-btn:active {
-            transform: scale(0.98);
-        }
+        .copy-btn:hover { background-color: var(--noon-yellow-hover); }
+        .copy-btn:active { transform: scale(0.98); }
 
         .copy-btn.copied {
             background-color: var(--success-green) !important;
@@ -163,8 +151,8 @@
     </main>
 
     <script>
-        // ضع رابط الأفلييت الخاص بك هنا لو أردت فتح المتجر تلقائياً بعد النسخ
-        const REDIRECT_URL = ""; 
+        // ضع رابط الأفلييت الخاص بك هنا
+        const REDIRECT_URL = "https://www.noon.com"; 
 
         function handleCopy() {
             const codeText = document.getElementById('couponCode').innerText.trim();
@@ -179,19 +167,19 @@
             }
 
             function onSuccess() {
-                btn.innerText = "تم نسخ الكود بنجاح! ✅";
+                btn.innerText = "تم نسخ الكود بنجاح  جاري التحويل... ⏳";
                 btn.classList.add('copied');
 
                 if (REDIRECT_URL) {
                     setTimeout(() => {
-                        window.open(REDIRECT_URL, '_blank');
-                    }, 1500);
+                        window.location.href = REDIRECT_URL;
+                    }, 1000);
                 }
 
                 setTimeout(() => {
                     btn.innerText = "اضغط هنا لنسخ الكود";
                     btn.classList.remove('copied');
-                }, 3000);
+                }, 3500);
             }
 
             function fallbackCopy(text) {
