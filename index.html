@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="احصل على أقوى كود خصم نون ZWR لتوفير إضافي يصل إلى 80% على كافة المستلزمات.">
     
-    <!-- سياسة أمان المحتوى (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc data:;">
+    <!-- سياسة أمان المحتوى (CSP) - تم تحديثها للسماح بتتبع إعلانات Google -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.googleadservices.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://i.postimg.cc https://www.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net data:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net https://www.google.com https://www.googleadservices.com;">
+
+    <!-- Google tag (gtag.js) الأساسي لحسابك الإعلاني -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18323731587"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18323731587');
+    </script>
 
     <title>أكبر عروض العام من نون | كود خصم ZWR</title>
     
@@ -167,6 +177,15 @@
             }
 
             function onSuccess() {
+                // إرسال إشارة التحويل (Conversion) إلى إعلانات Google فور نسخ الكود
+                if (typeof gtag === 'function') {
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-18323731587/f-neCJrUsdAcEIPpt6FE',
+                        'value': 1.0,
+                        'currency': 'EGP'
+                    });
+                }
+
                 btn.innerText = "تم نسخ الكود بنجاح  جاري التحويل... ⏳";
                 btn.classList.add('copied');
 
